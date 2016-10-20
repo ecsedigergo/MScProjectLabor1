@@ -4,11 +4,11 @@
 \input{include/packages}
 
 %TODO Set the main variables
-\newcommand{\vikszerzoVezeteknev}{Gipsz}
-\newcommand{\vikszerzoKeresztnev}{Jakab}
-\newcommand{\vikkonzulensA}{dr.~Konzulens Elemér} % Első konzulens neve
-\newcommand{\vikkonzulensB}{Második Konzulens} % Második konzulens neve; hagyd üresen, ha egy konzulensed van.
-\newcommand{\vikcim}{Elektronikus terelők} % Cím
+\newcommand{\vikszerzoVezeteknev}{Ecsedi}
+\newcommand{\vikszerzoKeresztnev}{Gergő}
+\newcommand{\vikkonzulensA}{dr. Zoltán Micskei} % Első konzulens neve
+\newcommand{\vikkonzulensB}{} % Második konzulens neve; hagyd üresen, ha egy konzulensed van.
+\newcommand{\vikcim}{Test generation} % Cím
 \newcommand{\viktanszek}{\bmemit} % Tanszék
 \newcommand{\vikdoktipus}{\msc} % Dokumentum típusa (\bsc, \msc)
 
@@ -18,9 +18,9 @@
 
 %TODO Language configuration -- choose one
 % Beállítások magyar nyelvű dolgozathoz
-\input{include/thesis-hu}
+%\input{include/thesis-hu}
 % Settings for English documents
-%\input{include/thesis-en}
+\input{include/thesis-en}
 
 \input{include/preamble}
 
@@ -31,8 +31,8 @@
 
 %TODO These define guidelines -- remove these
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\include{include/guideline}
-\include{include/project}
+%\include{include/guideline}
+%\include{include/project}
 
 \selectthesislanguage
 
@@ -50,7 +50,7 @@
 
 % Declaration and Abstract
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\include{include/declaration} %TODO Hallgatói nyilatkozat -- TDK és OTDK esetén törlendő!
+%\include{include/declaration} %TODO Hallgatói nyilatkozat -- TDK és OTDK esetén törlendő!
 \include{content/abstract}    %TODO Összefoglaló -- TDK és OTDK esetén nem kötelező
 
 
@@ -60,9 +60,10 @@
 
 %TODO import your own content
 \include{content/introduction}
-\include{content/latex-tools}
-\include{content/thesis-format}
-\include{content/template-usage}
+\include{content/garage-statechart}
+%\include{content/latex-tools}
+%\include{content/thesis-format}
+%\include{content/template-usage}
 
 
 % Acknowledgements
@@ -78,7 +79,7 @@
 
 % Bibliography
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\bibliography{bib/mybib}
+%\bibliography{bib/mybib}
 \addcontentsline{toc}{chapter}{\irodalomjegyzek}
 
 
