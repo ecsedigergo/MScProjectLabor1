@@ -1,18 +1,9 @@
 %----------------------------------------------------------------------------
 \chapter{GraphWalker}\label{sect:GraphWalker implementation of Garage Gate model}
+
 %----------------------------------------------------------------------------
 \section{GraphWalker}
 %----------------------------------------------------------------------------
-
-GraphWalker is a open source Model-based testing tool for test automation. It's designed to make it easy to design your tests using directed graphs. The tool generates test paths from these given graphs, which could be connected to each other. Each graph will have it's own set of generator(s) and stop condition(s). A path is used to call the corresponding methods or functions of your SUT (system under test). An edge in the directed graph represent an action in the system, consequently a vertex means a verification state, where we can check assertions in code. 
-
-
-There are two ways to execute GraphWalker:
-\begin{itemize}
-	\item Offline: The path generation from the graph is done once (typically with command line), and these tests needs to be stored. A test automation system handle the tests. 
-	\item Online: The path generation from the graph is created during the execution of the tests, run-time. If you have java coded SUT, it is pretty easy to add annotations to SUT and connect that to the generated paths.
-\end{itemize}
-
 
 \section{GraphWalker implementation in Eclipse}
 
@@ -29,7 +20,7 @@ There are two ways to execute GraphWalker:
 	\centering
 	\includegraphics[width=50mm, keepaspectratio]{figures/LightingModel.png}
 	\caption{Lamp0 model with yEd}
-	\label{fig:GateModel}
+	\label{fig:LampModel}
 \end{figure}
 
 
@@ -74,3 +65,6 @@ Generated test with option: @GraphWalker(start = "e\_init", value = "random(vert
 	"totalNumberOfVertices": 9,
 	"totalNumberOfUnvisitedEdges": 4
 }
+
+%TODO implement PyModel stuff
+\section{PyModel implementation}
