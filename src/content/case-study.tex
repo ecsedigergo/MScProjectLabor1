@@ -1,12 +1,12 @@
 %----------------------------------------------------------------------------
 \chapter{Case Study}\label{sect:case-study}
-In this section I want to demonstrate the functionalities of Model-based test generation. For this i have created a garage gate system. First I describe the common functionality of the system, then I set-up the system requirements and finally I introduce the implementation and design decisions of the system.
+In this section I want to demonstrate the functionalities of Model-based test generation. For this I have created a garage gate system. First I describe the common functionality of the system, then I set-up the system requirements and finally I introduce the implementation and design decisions of the system.
 
 \section{System introduction}
-The system is a garage gate, which consists of two gates, a lamp, a control switch, a control logic and a movement sensor. With the control switch we can open or close the gate. When someone or something got into the gate, while it is closing, the gate stops. Consequently if the gate is free again (nobody has been detected by the movement sensor) it can continue the closing session after some seconds long lamp lighting warning.
+The system is a garage gate, which consists of two gates, a lamp, a control switch, a control logic and a motion sensor. With the control switch we can open or close the gate. When someone or something got into the gate, while it is closing, the gate stops. Consequently if the gate is free again (nobody has been detected by the motion sensor) it can continue the closing session after lamp lighting warning.
 
 \section{Requirements}
-\textbf{Control flow}
+\textbf{Remote Controller}
 
 [REQ-01-1] The control switch should have an open and close button.
 [REQ-01-2] The signal from the control switch should be reachable up to 200m.
@@ -17,7 +17,7 @@ The system is a garage gate, which consists of two gates, a lamp, a control swit
 [REQ-02-1] While the lamp is lighting the gate should not move.
 [REQ-02-2] 
 
-\textbf{Movement Sensor}
+\textbf{Motion Sensor}
 
 [REQ-03-1] The sensor must detect if anything is between the two pillars of the gate.
 [REQ-03-2] If the sensor detect blocking thing in the gate, a blocking signal must be sent immediately to the Gate Logic.
@@ -28,7 +28,7 @@ The system is a garage gate, which consists of two gates, a lamp, a control swit
 [REQ-04-1] The opening and closing movement must be started with a signal from the control switch.
 
 %TODO write design details
-\section{System realization}
+\section{System implementation}
 %specific UML diagrams, component diagram or component composition diagram (like SWSV::RIS description)
 
 The system consists  4 elements, which are shown on the \figref{Garage Component} figure. The \textit{Gate} element stands for the physical representation of the Garage Gate itself, and can be in \textit{Opened} and \textit{Closed} states. We can open and close the \textit{Gate} with a \textit{Remote Controller}. If we start an action we can not pause or stop that. Nevertheless there is a \textit{Movement Sensor} on the two pillars of the \textit{Gate}, which stops the movement. When the \textit{Gate} is opening and the \textit{Movement Sensor} observes an object between the two pillars, it stops the movement (\textit{Opening Blocked}), until the object is not there any more. In the other case, when the \textit{Gate} is closing and the \textit{Movement Sensor} sign appears, it stops the movement again (\textit{Closing Blocked}). When the object is outside of the scope of the \textit{Movement Sensor} a \textit{Lamp}s on the pillars are \textit{Lighting} for some seconds then the \textit{Gate} is closing again.

@@ -11,8 +11,9 @@
 \newcommand{\viktanszek}{\bmemit} % Tanszék
 \newcommand{\vikdoktipus}{\msconlabi} % Dokumentum típusa (\bsc, \msc, \msconlabi ...)
 
-\input{include/tdk-variables.tex}
+%\input{include/tdk-variables.tex}
 \newcommand{\szerzoMeta}{\vikszerzoVezeteknev{} \vikszerzoKeresztnev} % egy szerző esetén
+%\newcommand{\szerzoMeta}{\vikszerzoVezeteknev{} \vikszerzoKeresztnev, \tdkszerzoB} % két szerző esetén
 
 % Settings for English documents
 \input{include/thesis-en}
@@ -38,7 +39,7 @@
 % Declaration and Abstract
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %\include{include/declaration} %TODO Hallgatói nyilatkozat -- TDK és OTDK esetén törlendő!
-\include{content/abstract}    
+%\include{content/abstract}    
 
 
 % The main part of the thesis
@@ -51,6 +52,8 @@
 \include{content/case-study}
 \include{content/graphwalker}
 \include{content/Summary}
+
+
 % Acknowledgements, Köszönetnyilvánítás
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 %\include{content/acknowledgement}
@@ -64,13 +67,13 @@
 
 % Bibliography
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-%\bibliography{bib/mybib}
+\bibliography{bib/projectLaborbib}
 %\addcontentsline{toc}{chapter}{\irodalomjegyzek}
 
 
 % Appendix
 %~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-\include{content/appendices}
+%\include{content/appendices}
 
 %\label{page:last}
 \end{document}
