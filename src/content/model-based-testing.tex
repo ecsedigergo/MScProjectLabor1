@@ -4,8 +4,9 @@ I have discovered two articles about Model-based testing, which is a Model-based
 \section{Test generation introduction}
 Testing aims at showing that our implemented software and hardware system is suited for our needs. To do that, we first must specify clear goals for our testing. With testing we want to detect system failures and the differences between the expected output and the real implementation's output.
 
-Model-based testing (MBT) is a way to clarify these differences for our system under test (SUT). This test approach uses a model that encodes the intended behaviour of the SUT and possibly the behaviour of its environment. This model should be simple, easy to understand according to the SUT complexity, and easy to check, modify and maintain.
-The idea of using test models is to avoid the complexity of hand-written tests, which are hard to design, maintain and write. Consequently the model must contain detailed information about the automatic generated tests. 
+Model-based testing (MBT) is a way to clarify these differences by examine our system under test (SUT). This test approach uses a model that encodes the intended behaviour of the SUT and possibly the behaviour of its environment. This model should be simple, easy to understand according to the SUT complexity, and easy to check, modify and maintain. The model can be built in different scenarios depending on our goal of testing.
+
+The idea of using test models is to avoid the complexity of hand-written tests, which are hard to design, maintain and write. The model can have different abstraction levels, but must contain detailed information for the automatic test generation.
 
 MBT is basically impacts the whole test process, but does not solve everything. Any change in the requirements or in the MBT model propagates to regenerate all the tests and review the correctness, if necessary.
 
@@ -43,7 +44,7 @@ In this section I want to describe the general process of the model-based testin
 Our first task is to create a model of our System Under Test (SUT), which is implemented by considering the system requirements and specification documents. Our model could have an abstract level implementation, so we can forsake some functionality or certain quality-of-service attributes.
 
 \textbf{Step 2.}
-In this step we define test selection criteria, which means that we define what is the goal of our tests. The best test is to detect all system's failures and give a helpful identifying what caused the failure. In general, test selection criteria can concentrate to functionality, structure of the model or well-defined set of faults, consequently it is a subset of behaviours of the model.
+In this step we define test selection criteria, which means that we define what is the goal of our tests. The best test is to detect all system's failures and give a helpful identifying what caused the failure. In general, test selection criteria can concentrate to functionality, structure of the model or well-defined set of faults, consequently it is a subset the model's behaviours.
 
 \textbf{Step 3.}
 The previously defined selection criteria then transformed into test case specifications. These statements formalise the notion of test selection criteria and render them operational: given a model and a test case specification, some automatic test case generator must be capable of deriving a test suite.
@@ -52,10 +53,10 @@ The previously defined selection criteria then transformed into test case specif
 Test suites are generated from the model, which satisfies the test case specification (but that aggregation can be empty too). The generator pick randomly a test case from the generated set of test cases.
 
 \textbf{Step 5-1.}
-Because of the abstraction of the model, each test case input and output concretisation handled by an abstraction layer called the adaptor. The executing done by test script applying the considered input and output to the SUT. The adapter and the script is not entirely separated from each other.
+Because of the abstraction of the model, each test case input and output concretisation handled by an abstraction layer called the adaptor. The executing done by test script applying the considered input and output to the SUT. The adaptor and the script is not entirely separated from each other.
 
 \textbf{Step 5-2.}
-The adapter creates a verdict, which is the result of the comparsion. This can be \textit{passed}, if the expected and the actual output conform. Otherwise the result can be \textit{failed}, which means that the expected output does not match with the actual output or \textit{inconclusive} meaning that there is no decision yet.
+The adaptor (or the test script) creates a verdict, which is the result of the comparsion. This can be \textit{passed}, if the expected and the actual output conform. Otherwise the result can be \textit{failed}, which means that the expected output does not match with the actual output or \textit{inconclusive} meaning that there is no decision yet.
 
 \section{Model-based test generation dimensions}
 \paragraph{Subject of MBT models}
@@ -87,15 +88,13 @@ MBT generated test cases can be executed by manually or automatically. For manua
 This approach is rather a technical detail of the test generation. With on-line generation, we can manipulate the SUT and test cases while executing them, which means parallel test case generation and execution. Consequently off-line generation is the idea that we create test cases before they are run.
 
 \section{Model-based test generation tools}
-In this section I want to describe the Graphwalker (\ref{mbt:tools:graphwalker}) and the PyModel tool (\ref{mbt:tools:pymodel}), which I have discovered in this semester.
+In this section I want to describe the Graphwalker (\ref{mbt:tools:graphwalker}) and the Spec Explorer tool (\ref{mbt:tools:specExplorer}), which I have discovered in this semester.
 
 \subsection{Graphwalker} \label{mbt:tools:graphwalker}
 
-GraphWalker is an open source model-based testing tool for test automation. It's designed to make it easy to create your tests using directed graphs. The tool generates test paths from these given graphs, which could be connected to each other. Each graph will have it's own set of generator(s) and stop condition(s).  An edge in the directed graph represent an action in the system, consequently a vertex means a verification state, where we can check assertions in code. A path is used to call the corresponding methods or functions of your SUT (system under test) by the adapter layer. 
+GraphWalker is an open source model-based testing tool for MBT. It is designed to make directed graph based models easily for testing purposes. The given graphs can be connected to each other, and can have variables too. The tool generates test paths from these given graphs. Each graph will have it's own set of generator(s) and stop condition(s). An edge in the directed graph represent an action in the system, consequently a vertex means a verification state, where we can have assertions in code. A path is used to call the corresponding methods or functions of our SUT (system under test) by the adapter layer. 
 
 The test selection is implemented by an expression, which have the following template: generator(stop\_condition\_type(condition))). This describes how to cover (random, a\_star, shortest\_all\_paths) and what to cover (requirement, edge, vertex, time and their variations).
-
-
 
 There are two ways to generate tests by GraphWalker:
 \begin{itemize}
@@ -105,17 +104,7 @@ There are two ways to generate tests by GraphWalker:
 
 For test execution an interface from the models is created by \textit{graphwalker:generate-sources} command. Our job is to implement these interfaces and call the proper SUT functionality for the given edges and vertexes.
 
-\subsection{Pymodel} \label{mbt:tools:pymodel}
+\subsection{Spec Explorer} \label{mbt:tools:specExplorer}
 
-The second model-based test generation tool, which I have known is Pymodel. This is an open-source framework implemented in Python. 
-
-Basically it has 3 parts/programs
-\begin{itemize}
-	\item pma: PyModel analyzer: it's parameter gets models, which can be a list of one or more modul names.  Each model contains a model (model program, FSM or test suite). This part generates FSM, the explored states and other result of the analysis.
-	\item pmg: PyModel graphics: it's argument is an FSM (created by pma), and the program generates a file of commands in dot graph-drawing language (can be viewed by Graphviz). 
-	\item pmt: PyModel tester: it's input parameter is a collection of models like in pma. The tester generates traces by executing the model. This programs offers several possibilities like view the traces, offline and online test generator execution (traces can be saved). 
-\end{itemize}
-
-The tool serves us one more program to invoke the 3 other parts with one single command, called pmv (PyModel viewer).
-
+It is a tool that extends  Microsoft Visual Studio for creating models of software behaviour, analysing those models with graphical visualization, checking th validity of those models, and generating test cases from the models.
 
