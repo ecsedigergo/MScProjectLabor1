@@ -106,5 +106,8 @@ For test execution an interface from the models is created by \textit{graphwalke
 
 \subsection{Spec Explorer} \label{mbt:tools:specExplorer}
 
-It is a tool that extends  Microsoft Visual Studio for creating models of software behaviour, analysing those models with graphical visualization, checking th validity of those models, and generating test cases from the models.
+It is a tool that extends  Microsoft Visual Studio for creating models of software behaviour, analysing those models with graphical visualization, checking the validity of those models, and generating test cases from the models. The environment incorporate into our solution in Visual Studio, with a project, that contains a model (adapts the test generation script to the implementation), and a cord file (sets up the SpecExplorer settings). We can create several instances from the model and cord file in the same project.
+
+The complex SpecExplorer environment gives us validation, exploration and test generation opportunities through developing/testing our system. Validation check the consistency of the cord and model programs, then exploration can give graph represented behaviour description about the SUT. In the last steps we can generate test code from the selected machines, which results in standalone unit test cases, which can be run by the other Visual Studio tools. Important information about the selected machines, that these must have TestEnabled and ForExploration flags in the cord files.
+
 
